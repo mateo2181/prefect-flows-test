@@ -1,4 +1,5 @@
 import platform
+import pandas as pd
 import prefect
 from prefect import Flow, Parameter, task
 from prefect.client.secrets import Secret
@@ -18,6 +19,13 @@ STORAGE = GitHub(
 
 RUN_CONFIG = KubernetesRun(labels=[AGENT_LABEL])
 
+@task
+def extract_and_load(dataset: str) -> None:
+    logger = prefect.context.get("logger")
+    file = f"gs://football_transfers/transfers/{dataset}"
+    df = pd.read_csv(file)
+    logger.info("Dataset %s with %d rows loaded to DB", dataset, len(df))
+
 @task(log_stdout=True)
 def hello_world():
     print(f"Hello from {FLOW_NAME} v2!")
@@ -27,6 +35,7 @@ def hello_world():
 with Flow(FLOW_NAME, storage=STORAGE, run_config=RUN_CONFIG,) as flow:
     # user_input = Parameter("user_input", default="Marvin")
     hw = hello_world()
+    extract_and_load("1999_dutch_eredivisie.csv")
 
 if __name__ == "__main__":
     subprocess.run(
