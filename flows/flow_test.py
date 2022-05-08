@@ -20,7 +20,7 @@ RUN_CONFIG = KubernetesRun(labels=[AGENT_LABEL])
 
 @task(log_stdout=True)
 def hello_world():
-    print(f"Hello from {FLOW_NAME}!")
+    print(f"Hello from {FLOW_NAME} v2!")
     print(f"Running this task with Prefect: {prefect.__version__} and Python {platform.python_version()}")
 
 
