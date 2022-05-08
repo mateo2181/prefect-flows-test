@@ -16,6 +16,6 @@ jobs:
       with:
         requirements: requirements.txt
     - name: Authenticate to Prefect dependencies
-      run: prefect auth login -k ${{ env.KEY }}
+      run: prefect auth login -k ${{ env.PREFECT_API_KEY }}
     - name: Register flow
       run: prefect register --project ${{ env.PROJECT_NAME }} -p flows/flow_test.py
