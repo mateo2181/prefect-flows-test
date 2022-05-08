@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container: prefecthq/prefect:latest-python3.9
     env: 
-      KEY: ${{secrets.PREFECT_API_KEY}}
+      # KEY: ${{ secrets.PREFECT_API_KEY }}
       PROJECT_NAME: 'testing'
     steps:
     - uses: actions/checkout@v2
