@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: prefecthq/prefect:latest
+    container: prefecthq/prefect:latest-python3.9
     env: 
       KEY: ${{ secrets.PREFECT_API_KEY}}
       PROJECT_NAME: 'testing'
