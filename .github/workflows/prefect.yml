@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container: prefecthq/prefect:latest-python3.9
     env: 
-      KEY: ${{ secrets.PREFECT_API_KEY}}
+      KEY: ${{secrets.PREFECT_API_KEY}}
       PROJECT_NAME: 'testing'
     steps:
     - uses: actions/checkout@v2
@@ -16,6 +16,6 @@ jobs:
       with:
         requirements: requirements.txt
     - name: Authenticate to Prefect dependencies
-      run: prefect auth login -k $KEY
+      run: prefect auth login -k ${{ env.KEY }}
     - name: Register flow
-      run: prefect register --project $PROJECT_NAME -p flows/flow_test.py
+      run: prefect register --project ${{ env.PROJECT_NAME }} -p flows/flow_test.py
