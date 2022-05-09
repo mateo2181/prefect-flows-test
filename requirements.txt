@@ -14,8 +14,6 @@ cloudpickle==2.0.0
 croniter==0.3.36
 cryptography==36.0.2
 cytoolz==0.11.2
-dask==2022.5.0
-dask-kubernetes==2022.4.1
 Deprecated==1.2.13
 distributed==2022.5.0
 docker==5.0.3
