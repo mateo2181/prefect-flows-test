@@ -17,7 +17,11 @@ STORAGE = GitHub(
     access_token_secret="GITHUB_ACCESS_TOKEN"
 )
 
-RUN_CONFIG = KubernetesRun(labels=[AGENT_LABEL])
+RUN_CONFIG = KubernetesRun(
+    image_pull_policy="Always",
+    labels=[AGENT_LABEL],
+    image="europe-west6-docker.pkg.dev/zoomcamp-340819/prefect-agents/prefect-agents-etl:latest"
+)
 
 @task
 def extract_and_load(dataset: str) -> None:
