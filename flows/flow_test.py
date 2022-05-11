@@ -20,6 +20,7 @@ STORAGE = GitHub(
 RUN_CONFIG = KubernetesRun(
     image_pull_policy="Always",
     labels=[AGENT_LABEL],
+    cpu_request=2,
     image="europe-west6-docker.pkg.dev/zoomcamp-340819/prefect-agents/prefect-agents-etl:latest"
 )
 
